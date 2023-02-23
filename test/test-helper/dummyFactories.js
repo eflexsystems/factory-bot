@@ -1,7 +1,7 @@
-import Factory from '../../src'
+import Factory from '../../src/index.js'
 import {
   User, Address, PhoneNumber, DummyModel,
-} from './dummyModels'
+} from './dummyModels.js'
 
 Factory.define('PhoneNumber', PhoneNumber, {
   type: 'mobile',

@@ -1,4 +1,4 @@
-import DefaultAdapter from './DefaultAdapter'
+import DefaultAdapter from './DefaultAdapter.js'
 
 export default class ReduxORMAdapter extends DefaultAdapter {
   constructor(session) {

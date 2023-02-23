@@ -1,9 +1,9 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
-import AssocAttrs from '../../src/generators/AssocAttrs'
-import DummyFactoryGirl from '../test-helper/DummyFactoryGirl'
-import asyncFunction from '../test-helper/asyncFunction'
+import AssocAttrs from '../../src/generators/AssocAttrs.js'
+import DummyFactoryGirl from '../test-helper/DummyFactoryGirl.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('AssocAttrs', () => {
   describe('#generate', () => {

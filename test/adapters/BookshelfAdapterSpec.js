@@ -1,8 +1,8 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
-import BookshelfAdapter from '../../src/adapters/BookshelfAdapter'
-import DummyModel from '../test-helper/DummyModel'
-import asyncFunction from '../test-helper/asyncFunction'
+import BookshelfAdapter from '../../src/adapters/BookshelfAdapter.js'
+import DummyModel from '../test-helper/DummyModel.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('BookshelfAdapter', () => {
   it('can be created', () => {

@@ -1,9 +1,9 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
 import { ORM } from 'redux-orm'
-import ReduxORMAdapter from '../../src/adapters/ReduxORMAdapter'
-import DummyReduxORMModel from '../test-helper/DummyReduxORMModel'
-import asyncFunction from '../test-helper/asyncFunction'
+import ReduxORMAdapter from '../../src/adapters/ReduxORMAdapter.js'
+import DummyReduxORMModel from '../test-helper/DummyReduxORMModel.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 const orm = new ORM()
 orm.register(DummyReduxORMModel)

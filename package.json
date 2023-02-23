@@ -1,10 +1,10 @@
 {
-  "name": "factory-bot",
+  "name": "@eflexsystems/factory-bot",
   "description": "A factory library for Node.js and JavaScript inspired by factory_girl",
-  "main": "./main.js",
-  "module": "./src/index",
+  "exports": "./main.js",
+  "type": "module",
   "types": "index.d.ts",
-  "version": "6.3.1",
+  "version": "7.0.0",
   "keywords": [
     "factory",
     "factory-bot",
@@ -15,7 +15,7 @@
     "fixture",
     "mongodb"
   ],
-  "repository": "https://github.com/ratson/factory-bot.git",
+  "repository": "https://github.com/eflexsystems/factory-bot.git",
   "license": "MIT",
   "files": [
     "*.md",
@@ -25,17 +25,16 @@
     "src"
   ],
   "bugs": {
-    "url": "https://github.com/ratson/factory-bot/issues"
+    "url": "https://github.com/eflexsystems/factory-bot/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/ratson/factory-bot/raw/master/LICENSE"
+      "url": "https://github.com/eflexsystems/factory-bot/raw/master/LICENSE"
     }
   ],
   "dependencies": {
-    "chance": "^1.1.7",
-    "esm": "3.2.25"
+    "chance": "^1.1.10"
   },
   "devDependencies": {
     "bluebird": "^3.7.2",
@@ -105,7 +104,6 @@
   },
   "mocha": {
     "recursive": true,
-    "require": "esm",
     "exit": true
   }
 }

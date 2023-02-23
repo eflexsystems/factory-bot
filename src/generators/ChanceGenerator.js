@@ -1,5 +1,5 @@
 import Chance from 'chance'
-import Generator from './Generator'
+import Generator from './Generator.js'
 
 export default class ChanceGenerator extends Generator {
   constructor(factoryGirl, seedValue) {

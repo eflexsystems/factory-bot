@@ -1,10 +1,10 @@
-import './test-helper/testUtils'
+import './test-helper/testUtils.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
-import Factory from '../src/Factory'
-import DummyModel from './test-helper/DummyModel'
-import DummyAdapter from './test-helper/DummyAdapter'
-import asyncFunction from './test-helper/asyncFunction'
+import Factory from '../src/Factory.js'
+import DummyModel from './test-helper/DummyModel.js'
+import DummyAdapter from './test-helper/DummyAdapter.js'
+import asyncFunction from './test-helper/asyncFunction.js'
 
 describe('Factory', () => {
   describe('#constructor', () => {

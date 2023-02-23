@@ -1,10 +1,10 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
-import { generatorThunk } from '../../src/FactoryGirl'
-import DummyFactoryGirl from '../test-helper/DummyFactoryGirl'
-import DummyGenerator from '../test-helper/DummyGenerator'
-import asyncFunction from '../test-helper/asyncFunction'
+import { generatorThunk } from '../../src/FactoryGirl.js'
+import DummyFactoryGirl from '../test-helper/DummyFactoryGirl.js'
+import DummyGenerator from '../test-helper/DummyGenerator.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('generatorThunk', () => {
   it('returns a function', () => {

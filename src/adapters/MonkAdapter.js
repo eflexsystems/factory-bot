@@ -1,4 +1,4 @@
-import ObjectAdapter from './ObjectAdapter'
+import ObjectAdapter from './ObjectAdapter.js'
 
 export default class MonkAdapter extends ObjectAdapter {
   async build(Model, props) {

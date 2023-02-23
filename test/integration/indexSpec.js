@@ -1,7 +1,7 @@
 import { expect } from 'chai'
-import Factory, { ObjectAdapter } from '../../src'
+import Factory, { ObjectAdapter } from '../../src/index.js'
 import '../test-helper/dummyFactories'
-import asyncFunction from '../test-helper/asyncFunction'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('indexIntegration', () => {
   Factory.setAdapter(new ObjectAdapter())

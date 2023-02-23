@@ -1,8 +1,8 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
-import Sequence from '../../src/generators/Sequence'
-import asyncFunction from '../test-helper/asyncFunction'
+import Sequence from '../../src/generators/Sequence.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('Sequence', () => {
   describe('#constructor', () => {

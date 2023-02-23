@@ -1,9 +1,9 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
-import AssocMany from '../../src/generators/AssocMany'
-import DummyFactoryGirl from '../test-helper/DummyFactoryGirl'
-import asyncFunction from '../test-helper/asyncFunction'
+import AssocMany from '../../src/generators/AssocMany.js'
+import DummyFactoryGirl from '../test-helper/DummyFactoryGirl.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 // import _debug from 'debug';
 
 // const debug = _debug('AssocManySpec');

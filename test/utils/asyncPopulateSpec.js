@@ -1,7 +1,7 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
-import asyncPopulate from '../../src/utils/asyncPopulate'
-import asyncFunction from '../test-helper/asyncFunction'
+import asyncPopulate from '../../src/utils/asyncPopulate.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('asyncPopulate', () => {
   it('returns a promise', () => {

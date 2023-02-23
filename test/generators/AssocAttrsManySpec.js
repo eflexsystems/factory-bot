@@ -1,9 +1,9 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
 import sinon from 'sinon'
-import AssocAttrsMany from '../../src/generators/AssocAttrsMany'
-import DummyFactoryGirl from '../test-helper/DummyFactoryGirl'
-import asyncFunction from '../test-helper/asyncFunction'
+import AssocAttrsMany from '../../src/generators/AssocAttrsMany.js'
+import DummyFactoryGirl from '../test-helper/DummyFactoryGirl.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('AssocAttrsMany', () => {
   const factoryGirl = new DummyFactoryGirl()

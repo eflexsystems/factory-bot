@@ -1,4 +1,4 @@
-import ObjectAdapter from './ObjectAdapter'
+import ObjectAdapter from './ObjectAdapter.js'
 
 const __Model__ = Symbol('Model')
 

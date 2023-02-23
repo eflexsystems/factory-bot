@@ -1,8 +1,8 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import _bookshelf from 'bookshelf'
 import _knex from 'knex'
 import { expect } from 'chai'
-import BookshelfAdapter from '../../src/adapters/BookshelfAdapter'
+import BookshelfAdapter from '../../src/adapters/BookshelfAdapter.js'
 
 const knex = _knex({
   client: 'sqlite3',

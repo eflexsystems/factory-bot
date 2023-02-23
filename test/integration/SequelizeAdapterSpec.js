@@ -1,7 +1,7 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import Sequelize from 'sequelize'
 import { expect } from 'chai'
-import SequelizeAdapter from '../../src/adapters/SequelizeAdapter'
+import SequelizeAdapter from '../../src/adapters/SequelizeAdapter.js'
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',

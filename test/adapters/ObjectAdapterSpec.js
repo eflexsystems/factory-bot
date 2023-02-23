@@ -1,8 +1,8 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
-import ObjectAdapter from '../../src/adapters/ObjectAdapter'
-import DummyModel from '../test-helper/DummyModel'
-import asyncFunction from '../test-helper/asyncFunction'
+import ObjectAdapter from '../../src/adapters/ObjectAdapter.js'
+import DummyModel from '../test-helper/DummyModel.js'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 describe('ObjectAdapter', () => {
   it('can be created', () => {

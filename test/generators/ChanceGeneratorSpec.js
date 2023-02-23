@@ -1,8 +1,8 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { expect } from 'chai'
-import ChanceGenerator from '../../src/generators/ChanceGenerator'
+import ChanceGenerator from '../../src/generators/ChanceGenerator.js'
 // import _debug from 'debug';
-import asyncFunction from '../test-helper/asyncFunction'
+import asyncFunction from '../test-helper/asyncFunction.js'
 
 // const debug = _debug('ChanceGeneratorSpec');
 

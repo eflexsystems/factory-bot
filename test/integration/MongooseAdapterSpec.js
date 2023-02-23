@@ -1,8 +1,8 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import mongoose from 'mongoose'
 import { expect } from 'chai'
-import MongooseAdapter from '../../src/adapters/MongooseAdapter'
-import { factory } from '../../src'
+import MongooseAdapter from '../../src/adapters/MongooseAdapter.js'
+import { factory } from '../../src/index.js'
 
 mongoose.Promise = Promise
 

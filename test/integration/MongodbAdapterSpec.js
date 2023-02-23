@@ -1,8 +1,8 @@
-import '../test-helper/testUtils'
+import '../test-helper/testUtils.js'
 import { MongoClient } from 'mongodb'
 import { expect } from 'chai'
-import MongodbAdapter from '../../src/adapters/MongodbAdapter'
-import { factory as factoryDefault } from '../../src'
+import MongodbAdapter from '../../src/adapters/MongodbAdapter.js'
+import { factory as factoryDefault } from '../../src/index.js'
 
 describe('MongodbAdapterIntegration', () => {
   let mongoUnavailable = false

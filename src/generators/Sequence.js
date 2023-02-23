@@ -1,4 +1,4 @@
-import Generator from './Generator'
+import Generator from './Generator.js'
 
 function generateId() {
   let id
