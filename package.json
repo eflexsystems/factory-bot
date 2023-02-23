@@ -50,8 +50,6 @@
     "mongodb": "^4.14.0",
     "mongoose": "^6.10.0",
     "prettier-eslint-cli": "^5.0.1",
-    "redux-orm": "^0.16.2",
-    "sequelize": "^6.5.0",
     "should": "^13.2.3",
     "sinon": "^9.2.4",
     "sinon-chai": "^3.5.0",
