@@ -41,7 +41,6 @@
     "chai-as-promised": "^7.1.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.34.0",
-    "husky": "^4.3.0",
     "lint-staged": "^10.5.4",
     "mocha": "^10.2.0",
     "mocha-eslint": "^7.0.0",
@@ -75,17 +74,6 @@
       "ecmaVersion": "latest",
       "sourceType": "module"
     }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier-eslint --write",
-      "eslint --fix"
-    ]
   },
   "mocha": {
     "recursive": true,
