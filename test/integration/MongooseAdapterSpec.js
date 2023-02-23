@@ -4,7 +4,7 @@ import { expect } from 'chai'
 import MongooseAdapter from '../../src/adapters/MongooseAdapter.js'
 import { factory } from '../../src/index.js'
 
-mongoose.Promise = Promise
+mongoose.set('strictQuery', false);
 
 const kittySchema = mongoose.Schema({
   name: String,
@@ -17,7 +17,7 @@ describe('MongooseAdapterIntegration', () => {
   const adapter = new MongooseAdapter()
 
   before(done => {
-    mongoose.connect('mongodb://localhost/factory_girl_test_db')
+    mongoose.connect('mongodb://127.0.0.1/factory_girl_test_db')
     const db = mongoose.connection
 
     db.on('error', () => {
@@ -65,7 +65,7 @@ describe('MongooseAdapterIntegration', () => {
     return adapter
       .save(kitten, Kitten)
       .then(k => expect(k).to.have.property('_id'))
-      .then(() => Kitten.remove({}))
+      .then(() => Kitten.deleteMany({}))
   })
   it('destroys models correctly', function () {
     mongoUnavailable && this.skip()
