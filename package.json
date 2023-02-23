@@ -41,11 +41,7 @@
     "chai": "^4.3.3",
     "chai-as-promised": "^7.1.1",
     "cross-env": "^7.0.3",
-    "eslint": "^7.21.0",
-    "eslint-config-concise": "^0.38.0",
-    "eslint-config-concise-esnext": "^0.38.0",
-    "eslint-config-concise-import": "^0.38.0",
-    "eslint-config-concise-mocha": "^0.38.0",
+    "eslint": "^8.34.0",
     "husky": "^4.3.0",
     "istanbul": "^1.0.0-alpha.2",
     "knex": "^0.95.2",
@@ -69,25 +65,20 @@
   },
   "eslintConfig": {
     "extends": [
-      "concise",
-      "concise-esnext",
-      "concise-import"
+      "eslint:recommended"
     ],
-    "rules": {
-      "arrow-parens": [
-        "error",
-        "as-needed"
-      ],
-      "class-methods-use-this": "off",
-      "default-param-last": "off",
-      "function-paren-newline": "off",
-      "max-classes-per-file": "off",
-      "no-multi-assign": "off",
-      "no-param-reassign": "off",
-      "no-plusplus": "off",
-      "no-unused-expressions": "off",
-      "prefer-object-spread": "off",
-      "unicorn/prefer-includes": "off"
+    "env": {
+      "mocha": true
+    },
+    "globals": {
+      "Model": "readonly",
+      "Promise": "readonly",
+      "Set": "readonly",
+      "Symbol": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
     }
   },
   "husky": {

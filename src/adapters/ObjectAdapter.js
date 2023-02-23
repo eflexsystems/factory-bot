@@ -7,19 +7,19 @@ export default class ObjectAdapter extends DefaultAdapter {
     return model
   }
 
-  async save(model, Model) {
+  async save(model) {
     return model
   }
 
-  async destroy(model, Model) {
+  async destroy(model) {
     return model
   }
 
-  get(model, attr, Model) {
+  get(model, attr) {
     return model[attr]
   }
 
-  set(props, model, Model) {
+  set(props, model) {
     return Object.assign(model, props)
   }
 }

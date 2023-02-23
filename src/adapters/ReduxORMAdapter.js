@@ -15,11 +15,11 @@ export default class ReduxORMAdapter extends DefaultAdapter {
     return model[attr]
   }
 
-  async save(model, Model) {
+  async save(model) {
     return model
   }
 
-  async destroy(model, Model) {
+  async destroy(model) {
     return Promise.resolve(model.delete()).then(() => true)
   }
 }

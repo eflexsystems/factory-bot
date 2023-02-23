@@ -3,19 +3,19 @@ export default class DefaultAdapter {
     return new Model(props)
   }
 
-  async save(model, Model) {
+  async save(model) {
     return Promise.resolve(model.save()).then(() => model)
   }
 
-  async destroy(model, Model) {
+  async destroy(model) {
     return Promise.resolve(model.destroy()).then(() => model)
   }
 
-  get(model, attr, Model) {
+  get(model, attr) {
     return model.get(attr)
   }
 
-  set(props, model, Model) {
+  set(props, model) {
     return model.set(props)
   }
 }
