@@ -42,8 +42,6 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.34.0",
     "husky": "^4.3.0",
-    "istanbul": "^1.0.0-alpha.2",
-    "knex": "^0.95.2",
     "lint-staged": "^10.5.4",
     "mocha": "^8.3.2",
     "mocha-eslint": "^7.0.0",
