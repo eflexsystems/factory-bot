@@ -1,7 +1,6 @@
 import './test-helper/testUtils.js'
 import { expect } from 'chai'
 import Factory, {
-  BookshelfAdapter,
   SequelizeAdapter,
   DefaultAdapter,
   MongooseAdapter,
@@ -9,7 +8,6 @@ import Factory, {
 } from '../src/index.js'
 
 import FactoryGirl from '../src/FactoryGirl.js'
-import BA from '../src/adapters/BookshelfAdapter.js'
 import SA from '../src/adapters/SequelizeAdapter.js'
 import DA from '../src/adapters/DefaultAdapter.js'
 import MA from '../src/adapters/MongooseAdapter.js'
@@ -19,7 +17,6 @@ describe('index', () => {
   it('exports correctly', () => {
     expect(Factory).to.be.instanceof(FactoryGirl)
 
-    expect(BA).to.be.equal(BookshelfAdapter)
     expect(SA).to.be.equal(SequelizeAdapter)
     expect(DA).to.be.equal(DefaultAdapter)
     expect(MA).to.be.equal(MongooseAdapter)

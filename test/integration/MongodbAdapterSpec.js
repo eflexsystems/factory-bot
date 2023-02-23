@@ -14,8 +14,7 @@ describe('MongodbAdapterIntegration', () => {
   before(async () => {
     try {
       const client = await MongoClient.connect(
-        'mongodb://localhost:27017/factory_girl_test_db',
-        { useNewUrlParser: true },
+        'mongodb://127.0.0.1:27017/factory_girl_test_db',
       )
       db = client.db()
     } catch (err) {
