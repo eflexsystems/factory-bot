@@ -120,6 +120,41 @@ export default class Factory {
     return Promise.all(models)
   }
 
+  attrsManySync(num, attrsArray = [], buildOptionsArray = []) {
+    let attrObject = null
+    let buildOptionsObject = null
+
+    if (typeof attrsArray === 'object' && !Array.isArray(attrsArray)) {
+      attrObject = attrsArray
+      attrsArray = []
+    }
+    if (
+      typeof buildOptionsArray === 'object' &&
+      !Array.isArray(buildOptionsArray)
+    ) {
+      buildOptionsObject = buildOptionsArray
+      buildOptionsArray = []
+    }
+    if (typeof num !== 'number' || num < 1) {
+      throw new Error('Invalid number of objects requested');
+    }
+    if (!Array.isArray(attrsArray)) {
+      throw new Error('Invalid attrsArray passed');
+    }
+    if (!Array.isArray(buildOptionsArray)) {
+      throw new Error('Invalid buildOptionsArray passed');
+    }
+    attrsArray.length = buildOptionsArray.length = num
+    const models = []
+    for (let i = 0; i < num; i++) {
+      models[i] = this.attrsSync(
+        attrObject || attrsArray[i] || {},
+        buildOptionsObject || buildOptionsArray[i] || {},
+      )
+    }
+    return models;
+  }
+
   async buildMany(
     adapter,
     num,

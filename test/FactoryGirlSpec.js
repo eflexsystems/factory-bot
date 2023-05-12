@@ -537,6 +537,53 @@ describe('FactoryGirl', () => {
       }),
     )
   })
+  describe('#attrsManySync', () => {
+    const factoryGirl = new FactoryGirl()
+    factoryGirl.define('factory1', DummyModel, { name: 'Mark', age: 40 })
+
+    it(
+      'requests correct factory',
+      (() => {
+        const spy = sinon.spy(factoryGirl, 'getFactory')
+        factoryGirl.attrsManySync('factory1', 10)
+        expect(spy).to.have.been.calledWith('factory1')
+        factoryGirl.getFactory.restore()
+      }),
+    )
+
+    it(
+      'calls attrsManySync on the factory with num, attrs and buildOptions',
+      (() => {
+        const factory = factoryGirl.getFactory('factory1')
+        const spy = sinon.spy(factory, 'attrsManySync')
+        const dummyAttrs = {}
+        const dummyBuildOptions = {}
+        factoryGirl.attrsManySync(
+          'factory1',
+          10,
+          dummyAttrs,
+          dummyBuildOptions,
+        )
+        expect(spy).to.have.been.calledWith(10, dummyAttrs, dummyBuildOptions)
+        factory.attrsManySync.restore()
+      }),
+    )
+
+    it(
+      'resolves to attrs array correctly',
+      (() => {
+        const attrs = factoryGirl.attrsManySync('factory1', 10)
+        expect(attrs).to.be.an('array')
+        expect(attrs).to.have.lengthOf(10)
+        attrs.forEach(attr => {
+          expect(attr).to.be.eql({
+            name: 'Mark',
+            age: 40,
+          })
+        })
+      }),
+    )
+  })
   describe('#buildMany', () => {
     const factoryGirl = new FactoryGirl()
     factoryGirl.define('factory1', DummyModel, { name: 'Mark', age: 40 })

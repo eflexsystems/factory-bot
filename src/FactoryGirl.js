@@ -139,6 +139,10 @@ export default class FactoryGirl {
     return this.getFactory(name).attrsMany(num, attrs, buildOptions)
   }
 
+  attrsManySync(name, num, attrs, buildOptions = {}) {
+    return this.getFactory(name).attrsManySync(num, attrs, buildOptions)
+  }
+
   async buildMany(name, num, attrs, buildOptions = {}) {
     const adapter = this.getAdapter(name)
     return this.getFactory(name)
