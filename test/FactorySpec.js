@@ -83,17 +83,11 @@ describe('Factory', () => {
   const dummyAdapter = new DummyAdapter()
 
   describe('#getFactoryAttrs', () => {
-    it('returns a promise', () => {
-      const factory = new Factory(DummyModel, {})
-      const factoryAttrsP = factory.getFactoryAttrs()
-      expect(factoryAttrsP.then).to.be.a('function')
-      return expect(factoryAttrsP).to.be.eventually.fulfilled
-    })
     it(
       'resolves to a copy of factoryAttrs',
-      asyncFunction(async () => {
+      (() => {
         const factory = new Factory(DummyModel, simpleObjInit)
-        const attrs = await factory.getFactoryAttrs()
+        const attrs = factory.getFactoryAttrs()
         expect(attrs).to.be.eql(simpleObjInit)
         expect(attrs).to.be.not.equal(simpleObjInit)
       }),
@@ -101,9 +95,9 @@ describe('Factory', () => {
 
     it(
       'resolves to return value of initializer function',
-      asyncFunction(async () => {
+      (() => {
         const factory = new Factory(DummyModel, simpleFuncInit)
-        const attrs = await factory.getFactoryAttrs()
+        const attrs = factory.getFactoryAttrs()
         expect(attrs).to.be.eql(simpleObjInit)
         expect(attrs).to.be.not.equal(simpleObjInit)
       }),
@@ -111,11 +105,11 @@ describe('Factory', () => {
 
     it(
       'calls initializer function with buildOptions',
-      asyncFunction(async () => {
+      (() => {
         const spy = sinon.spy(simpleFuncInit)
         const dummyBuildOptions = {}
         const factory = new Factory(DummyModel, spy)
-        await factory.getFactoryAttrs(dummyBuildOptions)
+        factory.getFactoryAttrs(dummyBuildOptions)
         expect(spy).to.have.been.calledOnce
         expect(spy).to.have.been.calledWith(dummyBuildOptions)
       }),

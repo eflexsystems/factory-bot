@@ -286,6 +286,45 @@ describe('FactoryGirl', () => {
       }),
     )
   })
+  describe('#attrsSync', () => {
+    const factoryGirl = new FactoryGirl()
+    factoryGirl.define('factory1', DummyModel, { name: 'Mark', age: 40 })
+
+    it(
+      'requests correct factory',
+      (() => {
+        const spy = sinon.spy(factoryGirl, 'getFactory')
+        factoryGirl.attrsSync('factory1')
+        expect(spy).to.have.been.calledWith('factory1')
+        factoryGirl.getFactory.restore()
+      }),
+    )
+
+    it(
+      'calls attrsSync on the factory with attrs and buildOptions',
+      (() => {
+        const factory = factoryGirl.getFactory('factory1')
+        const spy = sinon.spy(factory, 'attrsSync')
+        const dummyAttrs = {}
+        const dummyBuildOptions = {}
+        factoryGirl.attrsSync('factory1', dummyAttrs, dummyBuildOptions)
+        expect(spy).to.have.been.calledWith(dummyAttrs, dummyBuildOptions)
+        factory.attrsSync.restore()
+      }),
+    )
+
+    it(
+      'resolves to attrs correctly',
+      (() => {
+        const attrs = factoryGirl.attrsSync('factory1')
+        expect(attrs).to.be.eql({
+          name: 'Mark',
+          age: 40,
+        })
+      }),
+    )
+  })
+
   describe('#build', () => {
     const factoryGirl = new FactoryGirl()
     factoryGirl.define('factory1', DummyModel, { name: 'Mark', age: 40 })

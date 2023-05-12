@@ -1,4 +1,5 @@
 import asyncPopulate from './utils/asyncPopulate.js'
+import syncPopulate from './utils/syncPopulate.js'
 
 export default class Factory {
   constructor(Model, initializer, options = {}) {
@@ -29,11 +30,11 @@ export default class Factory {
     } else {
       attrs = { ...this.initializer }
     }
-    return Promise.resolve(attrs)
+    return attrs;
   }
 
   async attrs(extraAttrs = {}, buildOptions = {}) {
-    const factoryAttrs = await this.getFactoryAttrs(buildOptions)
+    const factoryAttrs = await Promise.resolve(this.getFactoryAttrs(buildOptions));
     const modelAttrs = {}
 
     const filteredAttrs = Object.keys(factoryAttrs).reduce((attrs, name) => {
@@ -44,6 +45,22 @@ export default class Factory {
 
     await asyncPopulate(modelAttrs, filteredAttrs)
     await asyncPopulate(modelAttrs, extraAttrs)
+
+    return modelAttrs
+  }
+
+  attrsSync(extraAttrs = {}, buildOptions = {}) {
+    const factoryAttrs = this.getFactoryAttrs(buildOptions)
+    const modelAttrs = {}
+
+    const filteredAttrs = Object.keys(factoryAttrs).reduce((attrs, name) => {
+      // eslint-disable-next-line no-prototype-builtins
+      if (!extraAttrs.hasOwnProperty(name)) attrs[name] = factoryAttrs[name]
+      return attrs
+    }, {})
+
+    syncPopulate(modelAttrs, filteredAttrs)
+    syncPopulate(modelAttrs, extraAttrs)
 
     return modelAttrs
   }
