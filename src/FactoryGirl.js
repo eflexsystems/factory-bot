@@ -104,7 +104,7 @@ export default class FactoryGirl {
     return factory
   }
 
-  async attrs(name, attrs, buildOptions = {}) {
+  attrs(name, attrs, buildOptions = {}) {
     return this.getFactory(name).attrs(attrs, buildOptions)
   }
 
