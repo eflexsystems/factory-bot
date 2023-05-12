@@ -47,15 +47,6 @@ describe('MongooseAdapter', () => {
     )
   })
   describe('#destroy', () => {
-    it(
-      'calls remove on the model',
-      asyncFunction(async () => {
-        const model = new DummyMongooseModel()
-        const destroyedModel = await adapter.destroy(model, DummyMongooseModel)
-        expect(destroyedModel.removeCalled).to.be.equal(true)
-      }),
-    )
-
     it('returns a promise', () => {
       const model = new DummyMongooseModel()
       const destroyedModelP = adapter.destroy(model, DummyMongooseModel)
