@@ -21,7 +21,7 @@ export default function syncPopulate(target, source) {
       target[attr] = target[attr] || {}
       syncPopulate(target[attr], source[attr])
     } else if (typeof source[attr] === 'function') {
-      target[attr] = source[attr]();
+      target[attr] = source[attr](target, source);
     } else {
       target[attr] = source[attr];
     }

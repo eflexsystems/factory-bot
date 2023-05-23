@@ -22,7 +22,7 @@ export default function asyncPopulate(target, source) {
       target[attr] = target[attr] || {}
       promise = asyncPopulate(target[attr], source[attr])
     } else if (typeof source[attr] === 'function') {
-      promise = Promise.resolve(source[attr]()).then(v => {
+      promise = Promise.resolve(source[attr](target, source)).then(v => {
         target[attr] = v
       })
     } else {
