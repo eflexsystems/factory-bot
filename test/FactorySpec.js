@@ -391,12 +391,12 @@ describe('Factory', () => {
     it(
       'invokes afterBuild callback option if any for each model',
       asyncFunction(async () => {
-        const spy = sinon.spy(model => model)
+        const spy = sinon.spy(model => model);
         const factoryWithOptions = new Factory(DummyModel, simpleObjInit, {
           afterBuild: spy,
         })
         const dummyAttrs = {}
-        const dummyBuildOptions = {}
+        const dummyBuildOptions = [1, 2, 3, 4, 5];
         const models = await factoryWithOptions.buildMany(
           dummyAdapter,
           5,
@@ -408,7 +408,7 @@ describe('Factory', () => {
           expect(spy.getCall(i)).to.have.been.calledWith(
             models[i],
             dummyAttrs,
-            dummyBuildOptions,
+            dummyBuildOptions[i],
           )
         }
       }),
@@ -503,7 +503,7 @@ describe('Factory', () => {
           expect(spy.getCall(i)).to.have.been.calledWith(
             models[i],
             dummyAttrs,
-            dummyBuildOptions,
+            dummyBuildOptions[i],
           )
         }
       }),

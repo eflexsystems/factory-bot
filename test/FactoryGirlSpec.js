@@ -661,7 +661,7 @@ describe('FactoryGirl', () => {
           expect(spy.getCall(i)).to.have.been.calledWith(
             models[i],
             dummyAttrs,
-            dummyBuildOptions,
+            dummyBuildOptions[i],
           )
         }
       }),
@@ -756,7 +756,7 @@ describe('FactoryGirl', () => {
           expect(spy.getCall(i)).to.have.been.calledWith(
             models[i],
             dummyAttrs,
-            dummyBuildOptions,
+            dummyBuildOptions[i],
           )
         }
       }),

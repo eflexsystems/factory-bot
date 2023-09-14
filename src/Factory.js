@@ -168,11 +168,11 @@ export default class Factory {
       builtModels =>
         (this.options.afterBuild && buildCallbacks
           ? Promise.all(
-            builtModels.map(builtModel =>
+            builtModels.map((builtModel, i) =>
               this.options.afterBuild(
                 builtModel,
                 attrsArray,
-                buildOptionsArray,
+                buildOptionsArray[i],
               ),
             ),
           )
@@ -197,11 +197,11 @@ export default class Factory {
       createdModels =>
         (this.options.afterCreate
           ? Promise.all(
-            createdModels.map(createdModel =>
+            createdModels.map((createdModel, i) =>
               this.options.afterCreate(
                 createdModel,
                 attrsArray,
-                buildOptionsArray,
+                buildOptionsArray?.[i],
               ),
             ),
           )

@@ -150,8 +150,8 @@ export default class FactoryGirl {
       .then(models =>
         (this.options.afterBuild
           ? Promise.all(
-            models.map(model =>
-              this.options.afterBuild(model, attrs, buildOptions),
+            models.map((model, i) =>
+              this.options.afterBuild(model, attrs, buildOptions[i]),
             ),
           )
           : models),
@@ -166,8 +166,8 @@ export default class FactoryGirl {
       .then(models =>
         (this.options.afterCreate
           ? Promise.all(
-            models.map(model =>
-              this.options.afterCreate(model, attrs, buildOptions),
+            models.map((model, i) =>
+              this.options.afterCreate(model, attrs, buildOptions?.[i]),
             ),
           )
           : models),
