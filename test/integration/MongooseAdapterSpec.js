@@ -73,10 +73,10 @@ describe('MongooseAdapterIntegration', () => {
     const kitten = adapter.build(Kitten, { name: 'smellyCat' })
     return adapter
       .save(kitten, Kitten)
-      .then(() => Kitten.count())
+      .then(() => Kitten.countDocuments())
       .then(count => expect(count).to.be.equal(1))
       .then(() => adapter.destroy(kitten, Kitten))
-      .then(() => Kitten.count())
+      .then(() => Kitten.countDocuments())
       .then(count => expect(count).to.be.equal(0))
   })
 

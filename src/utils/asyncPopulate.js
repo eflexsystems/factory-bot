@@ -3,7 +3,7 @@ function isPlainObject(o) {
   return Object.getPrototypeOf(o) === objectProto
 }
 
-export default function asyncPopulate(target, source) {
+export default async function asyncPopulate(target, source) {
   if (typeof target !== 'object') {
     return Promise.reject(new Error('Invalid target passed'))
   }
@@ -11,26 +11,23 @@ export default function asyncPopulate(target, source) {
     return Promise.reject(new Error('Invalid source passed'))
   }
 
-  const promises = Object.keys(source).map(attr => {
+  await Promise.all(Object.keys(source).map(async attr => {
     let promise
     if (Array.isArray(source[attr])) {
       target[attr] = []
-      promise = asyncPopulate(target[attr], source[attr])
+      await asyncPopulate(target[attr], source[attr])
     } else if (source[attr] === null || source[attr] === undefined) {
       target[attr] = source[attr]
     } else if (isPlainObject(source[attr])) {
       target[attr] = target[attr] || {}
-      promise = asyncPopulate(target[attr], source[attr])
+      await asyncPopulate(target[attr], source[attr])
     } else if (typeof source[attr] === 'function') {
-      promise = Promise.resolve(source[attr](target, source)).then(v => {
-        target[attr] = v
-      })
+      const v = await source[attr](target, source);
+      target[attr] = v
     } else {
-      promise = Promise.resolve(source[attr]).then(v => {
-        target[attr] = v
-      })
+      const v = await source[attr];
+      target[attr] = v
     }
     return promise
-  })
-  return Promise.all(promises)
+  }));
 }

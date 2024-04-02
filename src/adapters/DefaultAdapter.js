@@ -4,11 +4,13 @@ export default class DefaultAdapter {
   }
 
   async save(model) {
-    return Promise.resolve(model.save()).then(() => model)
+    await model.save();
+    return model;
   }
 
   async destroy(model) {
-    return Promise.resolve(model.destroy()).then(() => model)
+    await model.destroy();
+    return model;
   }
 
   get(model, attr) {

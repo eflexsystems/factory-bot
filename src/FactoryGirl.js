@@ -114,25 +114,25 @@ export default class FactoryGirl {
 
   async build(name, attrs = {}, buildOptions = {}) {
     const adapter = this.getAdapter(name)
-    return this.getFactory(name)
-      .build(adapter, attrs, buildOptions)
-      .then(model =>
-        (this.options.afterBuild
-          ? this.options.afterBuild(model, attrs, buildOptions)
-          : model),
-      )
+    const model = await this.getFactory(name).build(adapter, attrs, buildOptions);
+
+    if (this.options.afterBuild) {
+      return await this.options.afterBuild(model, attrs, buildOptions);
+    }
+
+    return model;
   }
 
   async create(name, attrs, buildOptions = {}) {
     const adapter = this.getAdapter(name)
-    return this.getFactory(name)
-      .create(adapter, attrs, buildOptions)
-      .then(createdModel => this.addToCreatedList(adapter, createdModel))
-      .then(model =>
-        (this.options.afterCreate
-          ? this.options.afterCreate(model, attrs, buildOptions)
-          : model),
-      )
+    const createdModel = await this.getFactory(name).create(adapter, attrs, buildOptions);
+    const model = await this.addToCreatedList(adapter, createdModel);
+
+    if (this.options.afterCreate) {
+      return await this.options.afterCreate(model, attrs, buildOptions);
+    }
+
+    return model;
   }
 
   attrsMany(name, num, attrs, buildOptions = {}) {
@@ -145,33 +145,33 @@ export default class FactoryGirl {
 
   async buildMany(name, num, attrs, buildOptions = {}) {
     const adapter = this.getAdapter(name)
-    return this.getFactory(name)
-      .buildMany(adapter, num, attrs, buildOptions)
-      .then(models =>
-        (this.options.afterBuild
-          ? Promise.all(
-            models.map((model, i) =>
-              this.options.afterBuild(model, attrs, buildOptions[i]),
-            ),
-          )
-          : models),
-      )
+    const models = await this.getFactory(name).buildMany(adapter, num, attrs, buildOptions);
+
+    if (this.options.afterBuild) {
+      return await Promise.all(
+        models.map((model, i) =>
+          this.options.afterBuild(model, attrs, buildOptions[i]),
+        ),
+      );
+    }
+
+    return models;
   }
 
   async createMany(name, num, attrs, buildOptions = {}) {
     const adapter = this.getAdapter(name)
-    return this.getFactory(name)
-      .createMany(adapter, num, attrs, buildOptions)
-      .then(models => this.addToCreatedList(adapter, models))
-      .then(models =>
-        (this.options.afterCreate
-          ? Promise.all(
-            models.map((model, i) =>
-              this.options.afterCreate(model, attrs, buildOptions?.[i]),
-            ),
-          )
-          : models),
-      )
+    let models = await this.getFactory(name).createMany(adapter, num, attrs, buildOptions);
+    models = this.addToCreatedList(adapter, models);
+
+    if (this.options.afterCreate) {
+      return await Promise.all(
+        models.map((model, i) =>
+          this.options.afterCreate(model, attrs, buildOptions?.[i]),
+        ),
+      );
+    }
+
+    return models;
   }
 
   getFactory(name, throwError = true) {

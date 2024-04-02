@@ -31,10 +31,12 @@ export default class MongodbAdapter extends ObjectAdapter {
 
     if (model._id) {
       await c.findOneAndUpdate(model._id, { $set: model }, { upsert: true })
-      return c.findOne(model._id).then(enhanceModel(Model))
+      const saved = await c.findOne(model._id);
+      return enhanceModel(Model)(saved)
     }
     const { insertedId } = await c.insertOne(model)
-    return c.findOne(insertedId).then(enhanceModel(Model))
+    const saved = await c.findOne(insertedId);
+    return enhanceModel(Model)(saved)
   }
 
   async destroy(model) {

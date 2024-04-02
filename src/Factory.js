@@ -75,14 +75,13 @@ export default class Factory {
 
   async create(adapter, attrs = {}, buildOptions = {}) {
     const model = await this.build(adapter, attrs, buildOptions)
-    return adapter
-      .save(model, this.Model)
-      .then(
-        savedModel =>
-          (this.options.afterCreate
-            ? this.options.afterCreate(savedModel, attrs, buildOptions)
-            : savedModel),
-      )
+    const savedModel = await adapter.save(model, this.Model);
+
+    if (this.options.afterCreate) {
+      return await this.options.afterCreate(savedModel, attrs, buildOptions);
+    }
+
+    return savedModel;
   }
 
   attrsMany(num, attrsArray = [], buildOptionsArray = []) {
@@ -163,21 +162,21 @@ export default class Factory {
     buildCallbacks = true,
   ) {
     const attrs = await this.attrsMany(num, attrsArray, buildOptionsArray)
-    const models = attrs.map(attr => adapter.build(this.Model, attr))
-    return Promise.all(models).then(
-      builtModels =>
-        (this.options.afterBuild && buildCallbacks
-          ? Promise.all(
-            builtModels.map((builtModel, i) =>
-              this.options.afterBuild(
-                builtModel,
-                attrsArray,
-                buildOptionsArray[i],
-              ),
-            ),
-          )
-          : builtModels),
-    )
+    const models = await Promise.all(attrs.map(attr => adapter.build(this.Model, attr)));
+
+    if (this.options.afterBuild && buildCallbacks) {
+      return await Promise.all(
+        models.map(async (builtModel, i) =>
+          this.options.afterBuild(
+            builtModel,
+            attrsArray,
+            buildOptionsArray[i],
+          ),
+        ),
+      );
+    }
+
+    return models;
   }
 
   async createMany(adapter, num, attrsArray = [], buildOptionsArray = []) {
@@ -186,26 +185,31 @@ export default class Factory {
       attrsArray = num
       num = attrsArray.length
     }
-    const models = await this.buildMany(
+    let models = await this.buildMany(
       adapter,
       num,
       attrsArray,
       buildOptionsArray,
     )
-    const savedModels = models.map(model => adapter.save(model, this.Model))
-    return Promise.all(savedModels).then(
-      createdModels =>
-        (this.options.afterCreate
-          ? Promise.all(
-            createdModels.map((createdModel, i) =>
-              this.options.afterCreate(
-                createdModel,
-                attrsArray,
-                buildOptionsArray?.[i],
-              ),
-            ),
-          )
-          : createdModels),
-    )
+
+    if (adapter.bulkSave) {
+      models = await adapter.bulkSave(models, this.Model);
+    } else {
+      models = await Promise.all(models.map(model => adapter.save(model, this.Model)));
+    }
+
+    if (this.options.afterCreate) {
+      return await Promise.all(
+        models.map((createdModel, i) =>
+          this.options.afterCreate(
+            createdModel,
+            attrsArray,
+            buildOptionsArray?.[i],
+          ),
+        ),
+      )
+    }
+
+    return models;
   }
 }
